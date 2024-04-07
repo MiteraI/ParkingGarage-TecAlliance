@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Interfaces\" />
+    <PackageReference Include="JHipsterNet.Core" Version="1.0.11" />
   </ItemGroup>
 
   <ItemGroup>

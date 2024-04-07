@@ -8,6 +8,11 @@ namespace ParkingGarage.Configuration
         public static IServiceCollection AddServiceModule(this IServiceCollection services)
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IFloorService, FloorService>();
+            services.AddScoped<IParkingSlotService, ParkingSlotService>();
+            services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<ITicketService, TicketService>();
+
             return services;
         }
     }

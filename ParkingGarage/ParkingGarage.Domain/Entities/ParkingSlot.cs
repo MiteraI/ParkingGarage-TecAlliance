@@ -1,6 +1,7 @@
 ﻿using ParkingGarage.Domain.Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace ParkingGarage.Domain.Entities
     public class ParkingSlot : BaseEntity<long>
     {
         public double PricePerHour { get; set; }
+        [Length(5,5)]
+        public string SlotCode { get; set; }
         public SlotStatus Status { get; set; }
         public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
         public long FloorId { get; set; }

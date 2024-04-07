@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParkingGarage.Service.Services.Interfaces
+namespace ParkingGarage.Repository.Repositories
 {
-    public interface IVehicleService
+    internal class SlotRepository
     {
     }
 }

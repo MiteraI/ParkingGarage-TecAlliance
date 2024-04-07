@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingGarage.Service.Services.Interfaces
 {
-    public interface IVehicleService
+    public interface ITicketService
     {
     }
 }
