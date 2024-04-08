@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+﻿    using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ParkingGarage.Settings;
 using System.IdentityModel.Tokens.Jwt;
@@ -55,7 +55,22 @@ namespace ParkingGarage.Security
 
         public ClaimsPrincipal TransformPrincipal(ClaimsPrincipal principal)
         {
-            throw new NotImplementedException();
+            var currentIdentity = (ClaimsIdentity)principal.Identity;
+            var roleClaims = principal
+                .Claims
+                .Filter(it => it.Type == AuthoritiesKey).First().Value
+                .Split(",")
+                .Map(role => new Claim(ClaimTypes.Role, role))
+                .ToList();
+
+            return new ClaimsPrincipal(
+                new ClaimsIdentity(
+                    principal.Claims.Union(roleClaims),
+                    currentIdentity.AuthenticationType,
+                    currentIdentity.NameClaimType,
+                    currentIdentity.RoleClaimType
+                )
+            );
         }
 
         private void Init()
@@ -71,14 +86,21 @@ namespace ParkingGarage.Security
             var user = principal as ClaimsPrincipal;
             var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var username = user.Identity.Name;
-            var role = user.FindFirst(ClaimTypes.Role)?.Value;
-            var authValue = !string.IsNullOrEmpty(role) ? role : string.Empty;
+            var roles = GetRoles(principal);
+            var authValue = string.Join(",", roles.Map(it => it.Value));
 
             return new ClaimsIdentity(new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.NameId, userId),
                 new Claim(AuthoritiesKey, authValue)
             });
+        }
+
+        private static IEnumerable<Claim> GetRoles(IPrincipal principal)
+        {
+            return principal is ClaimsPrincipal user
+                ? user.FindAll(it => it.Type == ClaimTypes.Role)
+                : Enumerable.Empty<Claim>();
         }
     }
 }

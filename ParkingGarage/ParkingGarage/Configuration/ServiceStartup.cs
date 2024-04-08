@@ -12,6 +12,7 @@ namespace ParkingGarage.Configuration
             services.AddScoped<IParkingSlotService, ParkingSlotService>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

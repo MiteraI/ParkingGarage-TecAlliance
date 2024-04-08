@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
@@ -56,6 +57,7 @@ namespace ParkingGarage.Configuration
                  });
 
             services.AddScoped<IPasswordHasher<User>, BCryptPasswordHasher>();
+            services.AddScoped<IClaimsTransformation, RoleClaimsTransformation>();
             services.AddScoped<ITokenProvider, TokenProvider>();
 
             return services;

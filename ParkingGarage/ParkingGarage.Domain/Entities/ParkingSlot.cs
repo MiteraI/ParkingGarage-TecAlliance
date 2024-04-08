@@ -16,6 +16,7 @@ namespace ParkingGarage.Domain.Entities
         [Length(5,5)]
         public string SlotCode { get; set; }
         public SlotStatus Status { get; set; }
+        public VehicleType VehicleType { get; set; }
         public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
         public long FloorId { get; set; }
         public Floor? Floor { get; set; }

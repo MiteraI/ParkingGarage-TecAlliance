@@ -23,6 +23,7 @@ public class Startup : IStartup
     {
         services
             .AddSecurityModule()
+            .AddAutoMapperModule()
             .AddRepositoryModule()
             .AddServiceModule();
     }
@@ -35,10 +36,6 @@ public class Startup : IStartup
         app
             .UseApplicationSecurity(securitySettings)
             .UseApplicationIdentity();
-    }
-
-    public virtual void ConfigureEndpoints(IApplicationBuilder app, IHostEnvironment environment)
-    {
     }
 
     protected virtual void AddDatabase(IConfiguration configuration, IServiceCollection services)

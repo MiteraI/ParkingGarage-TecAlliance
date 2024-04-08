@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingGarage.Domain.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ParkingGarage.Domain.Entities
         public DateTime ParkTime { get; set; }
         public DateTime LeaveTime { get; set; }
         public double TicketFee { get; set; }
+        public VehicleType VehicleType { get; set; }
         public string VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
         public long ParkingSlotId { get; set; }

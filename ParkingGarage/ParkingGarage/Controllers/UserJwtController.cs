@@ -25,6 +25,7 @@ namespace ParkingGarage.Controllers
         [Authorize]
         public string GetJwt()
         {
+            var user = User;
             return "jwt";
         }
 
@@ -33,6 +34,13 @@ namespace ParkingGarage.Controllers
         public string GetJwt1()
         {
             return "jwt1";
+        }
+
+        [HttpGet("jwt2")]
+        [Authorize(Roles = RolesConstants.ADMIN)]
+        public string GetJwt2()
+        {
+            return "jwt2";
         }
 
         [HttpPost("authenticate")]
