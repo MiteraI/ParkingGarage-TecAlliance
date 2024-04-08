@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
       next: () => {
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
-          this.router.navigate(['']);
+          this.router.navigate(['']).then(() => {
+            window.location.reload();
+          });
         }
       },
       error: () => (this.authenticationError = true),

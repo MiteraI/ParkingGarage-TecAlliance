@@ -11,7 +11,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap({
         error: (err: HttpErrorResponse) => {
-          if (!(err.status === 401 && (err.message === '' || err.url?.includes('api/account')))) {
+          if (!(err.status === 401 && (err.message === '' || err.url?.includes('/api/account')))) {
             console.log("ErrorHandlerInterceptor stuff");   
           }
         },
