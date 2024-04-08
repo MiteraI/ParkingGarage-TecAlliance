@@ -8,17 +8,11 @@ export class StateStorageService {
 
   constructor() {}
 
-  storeAuthenticationToken(
-    authenticationToken: string,
-    rememberMe: boolean
-  ): void {
+  storeAuthenticationToken(authenticationToken: string): void {
     authenticationToken = JSON.stringify(authenticationToken);
     this.clearAuthenticationToken();
-    if (rememberMe) {
-      localStorage.setItem(this.authenticationKey, authenticationToken);
-    } else {
-      sessionStorage.setItem(this.authenticationKey, authenticationToken);
-    }
+
+    localStorage.setItem(this.authenticationKey, authenticationToken);
   }
 
   getAuthenticationToken(): string | null {

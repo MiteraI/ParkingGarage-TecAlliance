@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatListModule],
+  imports: [],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.sass'
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 

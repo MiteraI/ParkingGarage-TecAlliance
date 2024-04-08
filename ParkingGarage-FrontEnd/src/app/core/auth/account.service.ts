@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Account } from './account.model';
-import { Observable, ReplaySubject, catchError, of, tap } from 'rxjs';
+import { Observable, ReplaySubject, catchError, of, shareReplay, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { StateStorageService } from './state-storage.service';
@@ -41,12 +41,13 @@ export class AccountService {
     );
   }
 
-  identity(force?: boolean): Observable<Account | null> {
+  identity(force?: boolean): Observable<Account | null> {    
     if (!this.accountCache$ || force) {
       this.accountCache$ = this.fetch().pipe(
         tap((account: Account) => {
-          this.authenticate(account);
+          this.authenticate(account);          
         }),
+        shareReplay(),
       );
     }
     return this.accountCache$.pipe(catchError(() => of(null)));
