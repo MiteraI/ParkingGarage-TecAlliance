@@ -44,6 +44,16 @@ namespace ParkingGarage.Configuration
                 LastName = "Administrator",
                 Email = "admin@localhost",
                 ImageUrl = ""
+            },
+            new User
+            {
+                Id = "f38d0c0e-78fa-4b05-a112-6aa676dd8a57",
+                UserName = "security",
+                PasswordHash = "$2a$11$SuIC5tlfoAOSqcSbvNwoy.K.LRt/Iqm.GsjEXbCXMxyC.XfuCY.N.",
+                FirstName = "security",
+                LastName = "Security",
+                Email = "security@localhost",
+                ImageUrl = ""
             }
         };
         }
@@ -53,6 +63,7 @@ namespace ParkingGarage.Configuration
             return new Dictionary<string, string[]>
         {
             { "user-2", new[] {RolesConstants.ADMIN}},
+                { "f38d0c0e-78fa-4b05-a112-6aa676dd8a57", new[] {RolesConstants.SECURITY}}
         };
         }
 

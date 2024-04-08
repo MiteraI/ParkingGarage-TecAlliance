@@ -6,7 +6,7 @@ using ParkingGarage.Service.Services.Interfaces;
 
 namespace ParkingGarage.Controllers
 {
-    [Route("api/vehicle")]
+    [Route("api/vehicles")]
     [ApiController]
     public class VehicleController : ControllerBase
     {
