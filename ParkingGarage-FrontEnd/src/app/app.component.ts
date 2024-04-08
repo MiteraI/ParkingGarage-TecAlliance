@@ -3,7 +3,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { AccountService } from './core/auth/account.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Authority } from './core/config/authority.constants';
+import { Authority } from './shared/constants/authority.constants';
 
 @Component({
   selector: 'app-root',

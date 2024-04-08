@@ -1,1 +1,8 @@
-<p>admin-page works!</p>
+<mat-sidenav-container class="h-full">
+    <mat-sidenav style="min-width: 200px;" mode="side" opened><a routerLink="/admin/user"
+            class="block px-4 py-2 text-center text-gray-800 hover:bg-gray-200">User Management</a>
+        <a routerLink="/admin/floor" class="block px-4 py-2 text-center text-gray-800 hover:bg-gray-200">Floor
+            Management</a>
+    </mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>

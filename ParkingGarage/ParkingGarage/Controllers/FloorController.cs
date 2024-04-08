@@ -7,7 +7,7 @@ using ParkingGarage.Service.Services.Interfaces;
 
 namespace ParkingGarage.Controllers
 {
-    [Route("api/floor")]
+    [Route("api/floors")]
     [ApiController]
     public class FloorController : ControllerBase
     {

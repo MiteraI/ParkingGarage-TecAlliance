@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SecurityPageComponent } from './security-page/security-page.component';
 import { UserRouteAccessService } from './core/auth/user-route-access.service';
-import { Authority } from './core/config/authority.constants';
+import { Authority } from './shared/constants/authority.constants';
 
 export const routes: Routes = [
   {
@@ -17,13 +17,14 @@ export const routes: Routes = [
       authorities: [Authority.ADMIN],
     },
     canActivate: [UserRouteAccessService],
-    component: AdminPageComponent,
-    title: 'Admin',
+    loadChildren: () =>
+      import('./admin-page/admin-page.routes').then((r) => r.routes),
+    title: 'Admin page',
   },
   {
     path: 'security',
     data: {
-      authorities: [Authority.ADMIN],
+      authorities: [Authority.SECURITY],
     },
     canActivate: [UserRouteAccessService],
     component: SecurityPageComponent,

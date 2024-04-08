@@ -1,1 +1,7 @@
-<p>security-page works!</p>
+<mat-sidenav-container class="h-full">
+    <mat-sidenav style="min-width: 200px;" mode="side" opened><a routerLink="/security/vehicle-enter"
+            class="block px-4 py-2 text-center text-gray-800 hover:bg-gray-200">Create ticket</a>
+        <a routerLink="/security/vehicle-exit" class="block px-4 py-2 text-center text-gray-800 hover:bg-gray-200">Checkout ticket</a>
+    </mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>

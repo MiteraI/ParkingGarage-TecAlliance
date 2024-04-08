@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../../core/auth/account.service';
-import { Authority } from '../../core/config/authority.constants';
+import { Authority } from '../../shared/constants/authority.constants';
 import { AuthJwtService } from '../../core/auth/auth-jwt.service';
 import { Router } from '@angular/router';
 
