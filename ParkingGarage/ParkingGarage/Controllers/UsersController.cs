@@ -8,7 +8,7 @@ using ParkingGarage.Service.Services.Interfaces;
 
 namespace ParkingGarage.Controllers
 {
-    [Route("api/admin/[controller]")]
+    [Route("api")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace ParkingGarage.Controllers
             return Ok(userDto);
         }
 
-        [HttpPost]
+        [HttpPost("users")]
         [Authorize(Roles = RolesConstants.ADMIN)]
         public async Task<ActionResult<User>> CreateUser([FromBody] CreateUserDto createUserDto)
         {
