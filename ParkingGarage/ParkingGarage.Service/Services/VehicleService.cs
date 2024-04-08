@@ -22,6 +22,11 @@ namespace ParkingGarage.Service.Services
             _vehicleRepository = vehicleRepository;
         }
 
+        public async Task<IEnumerable<Vehicle>> GetAllVehicles()
+        {
+            return await _vehicleRepository.QueryHelper().GetAllAsync();
+        }
+
         public async Task<Vehicle> GetVehicleByLicensePlate(string licensePlate)
         {
             var vehicle = await _vehicleRepository.QueryHelper().GetOneAsync(v => v.Id.Equals(licensePlate.ToUpper()));

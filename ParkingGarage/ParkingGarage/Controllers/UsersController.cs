@@ -21,6 +21,16 @@ namespace ParkingGarage.Controllers
             _userService = userService;
         }
 
+        [Authorize]
+        [HttpGet("account")]
+        public async Task<ActionResult<UserDto>> GetAccount()
+        {
+            var user = await _userService.GetUserWithRole();
+            if (user == null) return BadRequest("User not found");
+            var userDto = _mapper.Map<UserDto>(user);
+            return Ok(userDto);
+        }
+
         [HttpPost]
         [Authorize(Roles = RolesConstants.ADMIN)]
         public async Task<ActionResult<User>> CreateUser([FromBody] CreateUserDto createUserDto)

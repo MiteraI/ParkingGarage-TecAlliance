@@ -10,5 +10,6 @@ namespace ParkingGarage.Service.Services.Interfaces
     public interface IVehicleService
     {
         Task<Vehicle> GetVehicleByLicensePlate(string licensePlate);
+        Task<IEnumerable<Vehicle>> GetAllVehicles();
     }
 }

@@ -17,11 +17,11 @@ namespace ParkingGarage.Controllers
             _vehicleService = vehicleService;
         }
 
-        //[HttpGet]
-        //[Authorize(Roles = RolesConstants.ADMIN + "," + RolesConstants.SECURITY)]
-        //public async Task<IEnumerable<Vehicle>> GetAllVehicles()
-        //{
-        //    return await _vehicleService
-        //}
+        [HttpGet]
+        [Authorize(Roles = RolesConstants.ADMIN + "," + RolesConstants.SECURITY)]
+        public async Task<IEnumerable<Vehicle>> GetAllVehicles()
+        {
+            return await _vehicleService.GetAllVehicles();
+        }
     }
 }

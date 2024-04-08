@@ -9,6 +9,7 @@ namespace ParkingGarage.Service.Services.Interfaces
 {
     public interface IUserService
     {
+        Task<User> GetUserWithRole();
         Task<User> CreateSecurityAccount(User user, string password);
     }
 }
