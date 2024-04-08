@@ -23,6 +23,14 @@ namespace ParkingGarage.Service.Services
             _parkingSlotRepository = parkingSlotRepository;
         }
 
+        public async Task<Ticket> CheckParkingTicket(string licensePlate)
+        {
+            return await _ticketRepository.QueryHelper()
+                .Include(t => t.ParkingSlot)
+                .Include(t => t.Vehicle)
+                .Filter(t => t.Vehicle.Id == licensePlate && t.Status == TicketStatus.ACTIVE).FirstOrDefaultAsync();
+        }
+
         public async Task<Ticket> CreateParkingTicket(Ticket ticket)
         {
             var createdTicket = _ticketRepository.Add(ticket);
@@ -53,6 +61,11 @@ namespace ParkingGarage.Service.Services
             await _ticketRepository.SaveChangesAsync();
 
             return parkingTicket;
+        }
+
+        public async Task<IEnumerable<Ticket>> GetAllTickets()
+        {
+            return await _ticketRepository.QueryHelper().GetAllAsync();
         }
     }
 }

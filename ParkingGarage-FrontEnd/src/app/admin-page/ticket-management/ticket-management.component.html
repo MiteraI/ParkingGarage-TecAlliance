@@ -1,0 +1,35 @@
+<h2 class="w-full text-center text-2xl">Ticket Management</h2>
+<table mat-table [dataSource]="tickets" class="mat-elevation-z8">
+    <ng-container matColumnDef="parkTime">
+        <th mat-header-cell *matHeaderCellDef>Park Time</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.parkTime | date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="leaveTime">
+        <th mat-header-cell *matHeaderCellDef>Leave Time</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.leaveTime | date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="ticketFee">
+        <th mat-header-cell *matHeaderCellDef>Ticket Fee</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.ticketFee }}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.status | ticketStatus}}</td>
+    </ng-container>
+    <ng-container matColumnDef="vehicleType">
+        <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.vehicleType | vehicleType}}</td>
+    </ng-container>
+    <ng-container matColumnDef="vehicleId">
+        <th mat-header-cell *matHeaderCellDef>Vehicle ID</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.vehicleId }}</td>
+    </ng-container>
+    <ng-container matColumnDef="parkingSlotId">
+        <th mat-header-cell *matHeaderCellDef>Parking Slot ID</th>
+        <td mat-cell *matCellDef="let ticket">{{ ticket.parkingSlotId }}</td>
+    </ng-container>
+    <!-- Add more columns as needed -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

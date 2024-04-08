@@ -1,1 +1,28 @@
-<p>vehicle-enter works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput formControlName="licensePlateNumber" (input)="onLicensePlateChange()"
+            placeholder="License Plate Number" oninput="this.value = this.value.toUpperCase()">
+        <mat-error *ngIf="form.controls['licensePlateNumber'].invalid">Invalid License Plate Number</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
+<div *ngIf="plateType">
+    License Plate Type: {{ plateType }}
+</div>
+
+<div *ngIf="ticket" class="mt-4 border border-gray-300 p-4 rounded-md">
+    <p class="mb-2"><span class="font-bold">Park Time:</span> {{ ticket.parkTime }}</p>
+    <p class="mb-2"><span class="font-bold">Status:</span> {{ ticket.status | ticketStatus}}</p>
+    <p class="mb-2"><span class="font-bold">Vehicle Type:</span> {{ ticket.vehicleType | vehicleType}}</p>
+    <p class="mb-2"><span class="font-bold">Vehicle ID:</span> {{ ticket.vehicleId }}</p>
+    <p class="mb-2"><span class="font-bold">Parking Slot ID:</span> {{ ticket.parkingSlotId }}</p>
+    <div *ngIf="ticket.parkingSlot" class="mt-2 border-t border-gray-300 pt-2">
+        <p class="mb-2"><span class="font-bold">Parking Slot Details:</span></p>
+        <p class="mb-2"><span class="font-bold">ID:</span> {{ ticket.parkingSlot.id }}</p>
+        <p class="mb-2"><span class="font-bold">Price Per Hour:</span> {{ ticket.parkingSlot.pricePerHour }}</p>
+        <p class="mb-2"><span class="font-bold">Slot Code:</span> {{ ticket.parkingSlot.slotCode }}</p>
+        <p class="mb-2"><span class="font-bold">Status:</span> {{ ticket.parkingSlot.status | slotStatus}}</p>
+    </div>
+</div>

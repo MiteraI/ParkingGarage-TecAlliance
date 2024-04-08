@@ -11,5 +11,7 @@ namespace ParkingGarage.Service.Services.Interfaces
     {
         Task<Ticket> CreateParkingTicket(Ticket ticket);
         Task<Ticket> ExitParkingTicket(string licensePlate);
+        Task<Ticket> CheckParkingTicket(string licensePlate);
+        Task<IEnumerable<Ticket>> GetAllTickets();
     }
 }

@@ -31,7 +31,15 @@ namespace ParkingGarage.Controllers
             return Ok(userDto);
         }
 
-        [HttpPost("users")]
+        [HttpGet("users")]
+        [Authorize(Roles = RolesConstants.ADMIN)]
+        public async Task<IEnumerable<UserDto>> GetUsers()
+        {
+            var dbUsers = await _userService.GetAllUsers();
+            return _mapper.Map<IEnumerable<UserDto>>(dbUsers);
+        }
+
+        [HttpPost("users/create-security")]
         [Authorize(Roles = RolesConstants.ADMIN)]
         public async Task<ActionResult<User>> CreateUser([FromBody] CreateUserDto createUserDto)
         {

@@ -1,4 +1,5 @@
-﻿using ParkingGarage.Domain.Entities.Enums;
+﻿using ParkingGarage.Domain.Entities;
+using ParkingGarage.Domain.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace ParkingGarage.Dto.Ticket
         public VehicleType VehicleType { get; set; }
         public string VehicleId { get; set; }
         public long ParkingSlotId { get; set; }
+        public ParkingGarage.Domain.Entities.ParkingSlot ParkingSlot { get; set; }
     }
 }

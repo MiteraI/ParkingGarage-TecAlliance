@@ -31,4 +31,16 @@ export class FloorManagementService {
       observe: 'response',
     });
   }
+
+  getOne(id: number): Observable<EntityResponseType> {
+    return this.http.get<IFloor>(`${this.resourceUrl}/${id}`, {
+      observe: 'response',
+    });
+  }
+
+  delete(id: number): Observable<EntityResponseType> {
+    return this.http.delete<IFloor>(`${this.resourceUrl}/${id}`, {
+      observe: 'response',
+    });
+  }
 }

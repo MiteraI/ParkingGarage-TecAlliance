@@ -8,7 +8,7 @@ using ParkingGarage.Service.Services.Interfaces;
 
 namespace ParkingGarage.Controllers
 {
-    [Route("api/ticket")]
+    [Route("api/tickets")]
     [ApiController]
     public class TicketController : ControllerBase
     {
@@ -60,6 +60,8 @@ namespace ParkingGarage.Controllers
 
             var createdTicket = await _ticketService.CreateParkingTicket(ticket);
             var createdTicketDto = _mapper.Map<TicketDto>(createdTicket);
+            createdTicketDto.ParkingSlot.Tickets = null;
+
             return createdTicketDto;
         }
 
@@ -73,8 +75,33 @@ namespace ParkingGarage.Controllers
                 return BadRequest("Ticket not found");
             }
             var createdTicketDto = _mapper.Map<TicketDto>(ticket);
+            createdTicketDto.ParkingSlot.Tickets = null;
 
             return createdTicketDto;
+        }
+
+        [HttpPost("check")]
+        [Authorize(Roles = RolesConstants.SECURITY)]
+        public async Task<ActionResult<TicketDto>> CheckTicket([FromBody] CreateTicketDto checkTicketDto)
+        {
+            var ticket = await _ticketService.CheckParkingTicket(checkTicketDto.LicensePlateNumber);
+            if (ticket == null)
+            {
+                return BadRequest("Ticket not found");
+            }
+            var createdTicketDto = _mapper.Map<TicketDto>(ticket);
+            createdTicketDto.ParkingSlot.Tickets = null;
+
+            return createdTicketDto;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = RolesConstants.ADMIN)]
+        public async Task<IEnumerable<TicketDto>> GetAllTickets()
+        {
+            var tickets = await _ticketService.GetAllTickets();
+            var ticketDtos = _mapper.Map<IEnumerable<TicketDto>>(tickets);
+            return ticketDtos;
         }
 
     }

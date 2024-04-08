@@ -11,5 +11,6 @@ namespace ParkingGarage.Service.Services.Interfaces
     {
         Task<User> GetUserWithRole();
         Task<User> CreateSecurityAccount(User user, string password);
+        Task<IEnumerable<User>> GetAllUsers();
     }
 }

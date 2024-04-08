@@ -5,5 +5,5 @@ export interface CreateFloor{
     slotCount: number,
     physicalFloor: number,
     floorCode: string,
-    vehicleType: VehicleType
+    floorType: VehicleType | number
 }

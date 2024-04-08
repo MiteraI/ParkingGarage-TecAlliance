@@ -19,7 +19,7 @@ export const routes: Routes = [
     canActivate: [UserRouteAccessService],
     loadChildren: () =>
       import('./admin-page/admin-page.routes').then((r) => r.routes),
-    title: 'Admin page',
+    title: 'Admin Page',
   },
   {
     path: 'security',
@@ -27,7 +27,8 @@ export const routes: Routes = [
       authorities: [Authority.SECURITY],
     },
     canActivate: [UserRouteAccessService],
-    component: SecurityPageComponent,
-    title: 'Security',
+    loadChildren: () =>
+      import('./security-page/security-page.routes').then((r) => r.routes),
+    title: 'Security Page',
   },
 ];

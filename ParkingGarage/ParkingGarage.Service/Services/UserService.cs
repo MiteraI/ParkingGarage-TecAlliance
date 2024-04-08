@@ -56,5 +56,10 @@ namespace ParkingGarage.Service.Services
                 .ThenInclude(r => r.Role)
                 .SingleOrDefaultAsync(it => it.UserName == name);
         }
+
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            return await _userManager.Users.Include(u => u.UserRoles).ThenInclude(r => r.Role).ToListAsync();
+        }
     }
 }

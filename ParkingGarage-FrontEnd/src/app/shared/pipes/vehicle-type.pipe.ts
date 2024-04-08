@@ -6,7 +6,7 @@ import { VehicleType } from '../enums/vehicle-type.model';
   standalone: true,
 })
 export class VehicleTypePipe implements PipeTransform {
-  transform(value: number): string {
+  transform(value: number | VehicleType): string {
     switch (value) {
       case 0:
         return 'Car';
