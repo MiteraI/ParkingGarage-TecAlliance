@@ -12,6 +12,7 @@ namespace ParkingGarage.Domain.Entities
     public class Vehicle : BaseEntity<string>
     {
         public VehicleType Type { get; set; }
+        public ParkingStatus ParkingStatus { get; set; } 
         public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }

@@ -24,6 +24,10 @@ namespace ParkingGarage.Service.Services
 
         public async Task<Floor> CreateFloorWithParkingSlots(Floor floor, int parkingSlots, double slotPrice)
         {
+            if (await IsDuplicateFloorAndCode(floor))
+            {
+                throw new Exception("Floor code or the same physcal floor already exists");
+            }
             var createdFloor = await _floorRepository.CreateOrUpdateAsync(floor);
             var creatingSlots = new List<ParkingSlot>();
             // Create parkings slot list to number of parkingSlots with slotPrice and the slotCode equals to floorCode + number like 001,002,...
@@ -34,6 +38,7 @@ namespace ParkingGarage.Service.Services
                     FloorId = createdFloor.Id,
                     SlotCode = $"{createdFloor.FloorCode}{i.ToString().PadLeft(3, '0')}",
                     Status = SlotStatus.VACANT,
+                    VehicleType = floor.FloorType,
                     PricePerHour = slotPrice
                 };
                 creatingSlots.Add(parkingSlot);
@@ -61,6 +66,11 @@ namespace ParkingGarage.Service.Services
         public async Task<Floor> GetFloorWithAllSlots(long floorId)
         {
             return await _floorRepository.QueryHelper().Include(x => x.ParkingSlots).GetOneAsync(f => f.Id == floorId);
+        }
+
+        private async Task<bool> IsDuplicateFloorAndCode(Floor floor)
+        {
+            return await _floorRepository.QueryHelper().GetOneAsync(x => x.FloorCode == floor.FloorCode && x.Id != floor.Id) == null ? false : true;
         }
     }
 }

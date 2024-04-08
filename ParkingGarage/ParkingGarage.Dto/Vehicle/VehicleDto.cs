@@ -1,17 +1,17 @@
-﻿using ParkingGarage.Dto.ValidationAttributes;
+﻿using ParkingGarage.Domain.Entities.Enums;
+using ParkingGarage.Dto.ValidationAttributes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParkingGarage.Dto.Ticket
+namespace ParkingGarage.Dto.Vehicle
 {
-    public class CreateTicketDto
+    public class VehicleDto
     {
         [LicenseNumberValidation]
-        [Required]
         public string LicensePlateNumber { get; set; }
+        public VehicleType Type { get; set; }
     }
 }

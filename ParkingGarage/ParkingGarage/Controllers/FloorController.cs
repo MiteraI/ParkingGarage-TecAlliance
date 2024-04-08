@@ -27,8 +27,18 @@ namespace ParkingGarage.Controllers
                 PhysicalFloor = createFloorDto.PhysicalFloor,
                 FloorCode = createFloorDto.FloorCode,
                 FloorType = createFloorDto.FloorType
-            };  
-            var createdFloor = await _floorService.CreateFloorWithParkingSlots(floor, createFloorDto.SlotCount, createFloorDto.SlotPrice);
+            };
+            Floor createdFloor = null;
+
+            try
+            {
+                createdFloor = await _floorService.CreateFloorWithParkingSlots(floor, createFloorDto.SlotCount, createFloorDto.SlotPrice);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
             createdFloor.ParkingSlots.ToList().ForEach(x => x.Floor = null);
             return createdFloor;
         }

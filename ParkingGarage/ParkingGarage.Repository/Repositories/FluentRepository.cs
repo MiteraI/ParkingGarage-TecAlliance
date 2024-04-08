@@ -65,6 +65,13 @@ namespace ParkingGarage.Repository.Repositories
             return await query.SingleOrDefaultAsync();
         }
 
+        public async Task<TEntity> FirstOrDefaultAsync()
+        {
+            IQueryable<TEntity> query = BuildQuery();
+            return await query.FirstOrDefaultAsync();
+        }
+
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             IQueryable<TEntity> query = BuildQuery();

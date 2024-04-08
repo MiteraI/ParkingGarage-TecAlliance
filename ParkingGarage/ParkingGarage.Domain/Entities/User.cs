@@ -12,7 +12,7 @@ using System.Text.Json.Serialization;
 namespace ParkingGarage.Domain.Entities
 {
     [Table("user")]
-    public class User : IdentityUser<string>
+    public class User : IdentityUser
     {
         public string Login
         {

@@ -14,6 +14,7 @@ namespace ParkingGarage.Repository.Repositories.Interfaces
         IFluentRepository<TEntity> Filter(Expression<Func<TEntity, bool>> filter);
         IFluentRepository<TEntity> OrderBy(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy);
         Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> filter);
+        Task<TEntity> FirstOrDefaultAsync();
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<IPage<TEntity>> GetPageAsync(IPageable pageable);
         IFluentRepository<TEntity> Include(Expression<Func<TEntity, object>> expression);
